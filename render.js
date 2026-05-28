@@ -3,8 +3,8 @@ import delNote from "./deleteNote.js";
 
 const filterItem = document.querySelectorAll('.item');
 const filterList = document.getElementById('filterList');
-// const sortItem = document.querySelectorAll('.sort-item');
 const notesWrap = document.querySelector('.notes-wrap');
+const inputSearch = document.querySelector('.input-search');
 
 const click = filterItem.forEach(el => {
     el.addEventListener('click', (data) => {
@@ -16,14 +16,21 @@ filterList.addEventListener('change', (data) => {
     console.log(data.target.value);
 })
 
-const render = async() => {
+const render = async(text) => {
     notesWrap.textContent=''
     const id = localStorage.getItem('userId')
 
     const req = await fetch(`https://c418d591707a761b.mokky.dev/users/${id}`);
     const user = await req.json();
 
-    const task = user.task;
+    let task = [];
+
+    if(text) {
+        task = user.task.filter(el => el.title.toLowerCase().startsWith(text));
+    } else {
+        task = user.task;
+    }
+    
 
     task.forEach((el) => {
         const dataAtribute = notesWrap.querySelector(`[data-task-id='${el.taskId}']`);
@@ -61,5 +68,9 @@ const render = async() => {
 }
 
 render()
+
+inputSearch.addEventListener('input', () => {
+    render(inputSearch.value.toLowerCase())
+})
 
 export default render
