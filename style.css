@@ -182,5 +182,9 @@
         }
 
         .favorite-note {
-            background-image: url(src/favorite.webp);
+            background-image: url(src/favorite.svg);
+        }
+
+        .favorite-note path {
+            fill: yellow;
         }

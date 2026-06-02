@@ -43,7 +43,7 @@ addNoteBtn.addEventListener('click', async() => {
     const date = `${time.getDate()}.${time.getMonth() + 1}.${time.getFullYear()}`
 
 
-    const task = [...user.task, {title: noteName.value, descr: noteText.value, date: date, taskId: taskId}];
+    const task = [...user.task, {title: noteName.value, descr: noteText.value, date: date, taskId: taskId, favorite: false}];
 
     const addTask = await fetch(`https://c418d591707a761b.mokky.dev/users/${id}`, {
                     method: 'PATCH',

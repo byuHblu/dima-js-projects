@@ -1,5 +1,6 @@
 import openEditModal from "./editNote.js";
 import delNote from "./deleteNote.js";
+import addFavorite from "./addFavorite.js";
 
 const filterItem = document.querySelectorAll('.item');
 const filterList = document.getElementById('filterList');
@@ -61,6 +62,10 @@ const render = async(text) => {
 
         card.querySelector('.del-note').addEventListener('click', () => {
             delNote(el.taskId);
+        })
+
+        card.querySelector('.favorite-note').addEventListener('click', () => {
+            addFavorite(el.taskId);
         })
 
         notesWrap.appendChild(card)
