@@ -3,27 +3,29 @@ import delNote from "./deleteNote.js";
 import addFavorite from "./addFavorite.js";
 
 const filterItem = document.querySelectorAll('.item');
-const filterList = document.getElementById('filterList');
+// const filterList = document.getElementById('filterList');
 const notesWrap = document.querySelector('.notes-wrap');
 const inputSearch = document.querySelector('.input-search');
 
-const click = filterItem.forEach(el => {
+filterItem.forEach(el => {
     el.addEventListener('click', (data) => {
-        console.log(data.target.dataset.value);
+        render('', data.target.dataset.value);
     })
 })
 
-filterList.addEventListener('change', (data) => {
-    console.log(data.target.value);
-})
 
-const render = async(text) => {
+
+// filterList.addEventListener('change', (data) => {
+//     console.log(data.target.value);
+// })
+
+const render = async(text, lang) => {
     notesWrap.textContent=''
     const id = localStorage.getItem('userId')
 
     const req = await fetch(`https://c418d591707a761b.mokky.dev/users/${id}`);
     const user = await req.json();
-
+    
     let task = [];
 
     if(text) {
@@ -31,8 +33,25 @@ const render = async(text) => {
     } else {
         task = user.task;
     }
-    
 
+    switch(lang) {
+        case 'active':
+            task = user.task.filter(el => el.deleted === false && el.finished === false);
+            break;
+        
+        case 'favorite':
+            task = user.task.filter(el => el.deleted === false && el.favorite === true);
+            break;
+
+        case 'finished':
+            task = user.task.filter(el => el.deleted === false && el.finished === true);
+            break;    
+
+        case 'deleted':
+            task = user.task.filter(el => el.deleted === true);
+            break;        
+    }
+    
     task.forEach((el) => {
         const dataAtribute = notesWrap.querySelector(`[data-task-id='${el.taskId}']`);
         if(dataAtribute) return
