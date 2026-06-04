@@ -1,3 +1,5 @@
+import render from "./render.js";
+
 const addFavorite = async(id) => {
 
     const userId = localStorage.getItem('userId');
@@ -18,6 +20,8 @@ const addFavorite = async(id) => {
                                 } ,
                                 body: JSON.stringify({task: task})
     })
+
+    render()
 }
 
 export default addFavorite

@@ -156,9 +156,15 @@
             border-radius: 20px;
         }
 
-        .date,
-        .settings {
+        .date {
             text-align: right;
+        }
+
+        .settings {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            gap: 5px;
         }
 
         .edit-note,
@@ -173,18 +179,24 @@
             border: none;
         }
 
-        .edit-note {
-            background-image: url(src/edit.jpg);
-        }
-
-        .del-note {
-            background-image: url(src/del.webp);
-        }
-
+        .edit-note,
+        .del-note,
         .favorite-note {
-            background-image: url(src/favorite.svg);
+            background: none;
+            cursor: pointer;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out ;
         }
 
-        .favorite-note path {
-            fill: yellow;
+        .favorite-note.active svg {
+            background-color: transparent;
+            fill: red;
         }
+
+        .edit-note:hover,
+        .del-note:hover,
+        .favorite-note:hover {
+            transform: scale(1.1);
+        }
+
+
