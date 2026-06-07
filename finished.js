@@ -1,4 +1,6 @@
-const addFinished = async(id) => {
+import render from "./render.js";
+
+const isFinished = async(id) => {
 
     const userId = localStorage.getItem('userId');
     const req = await fetch(`https://c418d591707a761b.mokky.dev/users/${userId}`);
@@ -11,12 +13,14 @@ const addFinished = async(id) => {
     findTask.finished = !findTask.finished
 
     await fetch (`https://c418d591707a761b.mokky.dev/users/${userId}`, {
-                                method: 'PATCH',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                } ,
-                                body: JSON.stringify({task: task})
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'application/json'
+        } ,
+        body: JSON.stringify({task: task})
     })
+
+    render('finished')
 }
 
-export default addFinished
+export default isFinished

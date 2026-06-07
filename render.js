@@ -1,7 +1,8 @@
 import openEditModal from "./editNote.js";
 import delNote from "./deleteNote.js";
 import addFavorite from "./addFavorite.js";
-import addFinished from "./finished.js";
+import addToTrash from "./addToTrash.js";
+import isFinished from "./finished.js";
 
 const filterItem = document.querySelectorAll('.item');
 // const filterList = document.getElementById('filterList');
@@ -18,7 +19,7 @@ filterItem.forEach(el => {
 //     console.log(data.target.value);
 // })
 
-const render = async(text, lang) => {
+const render = async(text, lang = 'active') => {
     notesWrap.textContent=''
     const id = localStorage.getItem('userId')
 
@@ -27,9 +28,9 @@ const render = async(text, lang) => {
     
     let task = [];
 
-    if(text) {
+    if(text && !lang) {
         task = user.task.filter(el => el.title.toLowerCase().startsWith(text));
-    } else {
+    } else if(!lang) {
         task = user.task;
     }
 
@@ -61,7 +62,7 @@ const render = async(text, lang) => {
         card.innerHTML = `
                 <div class="settings">
                     <label class="custom-checkbox">
-                        <input type="checkbox" class="custom-checkbox-input">
+                        <input type="checkbox" class="custom-checkbox-input" ${el.finished ? 'checked' : ''}>
                         <span class="custom-checkbox-mark">
                             <svg class="custom-checkbox-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
@@ -89,7 +90,7 @@ const render = async(text, lang) => {
                             </svg>
                         </button>
 
-                        <button class="add-in-basket">
+                        <button class="add-in-trash">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                             </svg>
@@ -105,8 +106,22 @@ const render = async(text, lang) => {
 
 
         card.querySelector('.custom-checkbox-input').addEventListener('change', () => {
-            addFinished(el.taskId)
+            isFinished(el.taskId)
         })
+
+        const addInTrashBtn = card.querySelector('.add-in-trash');
+
+        addInTrashBtn.addEventListener('click', () => {
+            addToTrash(el.taskId)
+        })
+
+        if (addInTrashBtn) {
+            if (el.deleted) {
+                addInTrashBtn.classList.add('active');
+            } else {
+                addInTrashBtn.classList.remove('active');
+            }
+        }
 
         card.querySelector('.edit-note').addEventListener('click', () => {
             openEditModal(el)

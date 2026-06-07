@@ -10,15 +10,14 @@ const addFavorite = async(id) => {
 
     const findTask = task.find(el => el.taskId === id);
 
-
     findTask.favorite = !findTask.favorite
 
     await fetch (`https://c418d591707a761b.mokky.dev/users/${userId}`, {
-                                method: 'PATCH',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                } ,
-                                body: JSON.stringify({task: task})
+        method: 'PATCH',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({task: task})
     })
 
     render()

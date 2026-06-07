@@ -170,7 +170,7 @@ body {
 .edit-note,
 .del-note,
 .favorite-note,
-.add-in-basket {
+.add-in-trash {
     width: 30px;
     height: 30px;
     background-position: center;
@@ -183,14 +183,15 @@ body {
 .edit-note,
 .del-note,
 .favorite-note,
-.add-in-basket {
+.add-in-trash {
     background: none;
     cursor: pointer;
     transform: scale(1);
     transition: transform 0.3s ease-in-out ;
 }
 
-.favorite-note.active svg {
+.favorite-note.active svg,
+.add-in-trash.active svg {
     background-color: transparent;
     fill: red;
 }
@@ -198,7 +199,7 @@ body {
 .edit-note:hover,
 .del-note:hover,
 .favorite-note:hover,
-.add-in-basket:hover {
+.add-in-trash:hover {
     transform: scale(1.1);
 }
 
