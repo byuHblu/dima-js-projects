@@ -1,202 +1,292 @@
 *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+body {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            box-shadow: 2px 2px 4px rgba(4, 8, 0, 0.5);
-        }
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 2px 2px 4px rgba(4, 8, 0, 0.5);
+}
 
-        .content-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 20px;
-        }
+.content-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
 
-        .title {
-            margin: 0;
-        }
+.title {
+    margin: 0;
+}
 
-        .modal,
-        .modal2,
-        .modal3,
-        .modal4 {
-            display: none;
-        }
+.modal,
+.modal2,
+.modal3,
+.modal4 {
+    display: none;
+}
 
-        .modal.open,
-        .modal2.open,
-        .modal3.open,
-        .modal4.open {
-            display: flex;
-            position: fixed;
-            inset: 0;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100%;
-        }
+.modal.open,
+.modal2.open,
+.modal3.open,
+.modal4.open {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
 
-        .shadow,
-        .shadow2,
-        .shadow3,
-        .shadow4 {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
+.shadow,
+.shadow2,
+.shadow3,
+.shadow4 {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
 
-        .modal-content {
-            position: relative;
-            display: block;
-            margin: auto;
-            background-color: #FFF;
-            padding: 30px;
-            z-index: 2;
-        }
+.modal-content {
+    position: relative;
+    display: block;
+    margin: auto;
+    background-color: #FFF;
+    padding: 30px;
+    z-index: 2;
+}
 
-        .btns-wrap .login {
-            display: flex;
-        }
-        .btns-wrap.auth .login {
-            display: none;
-        }
+.btns-wrap .login {
+    display: flex;
+}
+.btns-wrap.auth .login {
+    display: none;
+}
 
-        .btns-wrap .logout {
-            display: none;
-        }
-        .btns-wrap.auth .logout {
-            display: flex;
-        }
+.btns-wrap .logout {
+    display: none;
+}
+.btns-wrap.auth .logout {
+    display: flex;
+}
 
-        .item-container {
-            padding: 15px;
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            border: 1px solid black;
-            border-radius: 20px;
-            width: fit-content;
-        }
+.item-container {
+    padding: 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: fit-content;
+}
 
-        .item {
-            font-size: 20px;
-            cursor: pointer;
-        }
+.item {
+    font-size: 20px;
+    cursor: pointer;
+}
 
-        .item:hover {
-            color: darkgoldenrod;
-        }
+.item:hover {
+    color: darkgoldenrod;
+}
 
-        .settings-wrap {
-            margin-top: 15px;
-            margin-left: 15px;
-            margin-right: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
+.settings-wrap {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 
-        .add-note-btn {
-            cursor: pointer;
-        }
+.add-note-btn {
+    cursor: pointer;
+}
 
-        .note-wrap {
-            padding: 20px;
-            background-color: blueviolet;
-            z-index: 1;
-        }
+.note-wrap {
+    padding: 20px;
+    background-color: blueviolet;
+    z-index: 1;
+}
 
-        .not {
-            position: absolute;
-            top: 50px;
-            right: -200px;
-            font-size: 20px;
-            background-color: aqua;
-            padding: 15px;
-            transition: all .5s ease-in-out;
-            border-radius: 15px;
-        }
+.not {
+    position: absolute;
+    top: 50px;
+    right: -200px;
+    font-size: 20px;
+    background-color: aqua;
+    padding: 15px;
+    transition: all .5s ease-in-out;
+    border-radius: 15px;
+}
 
-        .not.active {
-            right: 15px;
-        }
+.not.active {
+    right: 15px;
+}
 
-        .notes-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2vw;
-            margin: 15px;
-        }
+.notes-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    margin: 15px;
+}
 
-        .card {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 300px;
-            gap: 10px;
-            padding: 12px;
-            max-width: 49vw;
-            min-width: 300px;
-            border: 1px solid black;
-            border-radius: 20px;
-        }
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 300px;
+    gap: 10px;
+    padding: 12px;
+    max-width: 49vw;
+    min-width: 300px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
 
-        .date {
-            text-align: right;
-        }
+.date {
+    text-align: right;
+}
 
-        .settings {
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            gap: 5px;
-        }
+.settings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
 
-        .edit-note,
-        .del-note,
-        .favorite-note {
-            width: 30px;
-            height: 30px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-            outline: none;
-            border: none;
-        }
+.edit-note,
+.del-note,
+.favorite-note,
+.add-in-basket {
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    outline: none;
+    border: none;
+}
 
-        .edit-note,
-        .del-note,
-        .favorite-note {
-            background: none;
-            cursor: pointer;
-            transform: scale(1);
-            transition: transform 0.3s ease-in-out ;
-        }
+.edit-note,
+.del-note,
+.favorite-note,
+.add-in-basket {
+    background: none;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out ;
+}
 
-        .favorite-note.active svg {
-            background-color: transparent;
-            fill: red;
-        }
+.favorite-note.active svg {
+    background-color: transparent;
+    fill: red;
+}
 
-        .edit-note:hover,
-        .del-note:hover,
-        .favorite-note:hover {
-            transform: scale(1.1);
-        }
+.edit-note:hover,
+.del-note:hover,
+.favorite-note:hover,
+.add-in-basket:hover {
+    transform: scale(1.1);
+}
 
+/* Базовый контейнер */
+.custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: sans-serif;
+}
 
+/* Скрываем стандартный чекбокс */
+.custom-checkbox-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* Кастомный чекбокс */
+.custom-checkbox-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+}
+
+/* SVG иконка */
+.custom-checkbox-icon {
+    width: 14px;
+    height: 14px;
+    color: #ffffff;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s ease;
+}
+
+/* Состояние checked - показываем SVG */
+.custom-checkbox-input:checked + .custom-checkbox-mark {
+    background-color: #000;
+    border-color: #000;
+}
+
+.custom-checkbox-input:checked + .custom-checkbox-mark .custom-checkbox-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hover эффект */
+.custom-checkbox:hover .custom-checkbox-mark {
+    border-color: #000;
+}
+
+/* Focus эффект */
+.custom-checkbox-input:focus + .custom-checkbox-mark {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+/* Активное состояние (нажатие) */
+.custom-checkbox:active .custom-checkbox-mark {
+    transform: scale(0.95);
+}
+
+/* Текст */
+.custom-checkbox-text {
+    color: #000;
+    font-size: 14px;
+}
+
+/* Disabled состояние */
+.custom-checkbox-input:disabled + .custom-checkbox-mark {
+    background-color: #f3f4f6;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+}
+
+.custom-checkbox-input:disabled + .custom-checkbox-mark .custom-checkbox-icon {
+    color: #9ca3af;
+}
+
+.custom-checkbox-input:disabled ~ .custom-checkbox-text {
+    color: #9ca3af;
+    cursor: not-allowed;
+}
